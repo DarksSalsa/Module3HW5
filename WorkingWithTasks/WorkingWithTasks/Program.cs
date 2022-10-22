@@ -1,6 +1,6 @@
 ﻿public class Program
 {
-    private static void Main(string[] args)
+    public static void Main(string[] args)
     {
         var program = new Program();
         Console.WriteLine(program.WaitForReadersAsync().Result);
@@ -22,7 +22,7 @@
 
     public async Task<string> WaitForReadersAsync()
     {
-        var list = new List<Task<string>>() {Task.Run(ReadFromHelloAsync), Task.Run(ReadFromWorldAsync)};
+        var list = new List<Task<string>>() { Task.Run(ReadFromHelloAsync), Task.Run(ReadFromWorldAsync) };
         var concat = Task.WhenAll(list).GetAwaiter().GetResult();
         return await Task.Run(() => concat[0] + concat[1]);
     }
